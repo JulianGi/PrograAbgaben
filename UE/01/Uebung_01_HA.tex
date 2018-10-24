@@ -1,0 +1,100 @@
+
+\documentclass[a4paper]{article}
+
+\usepackage{mathtools}
+\usepackage{amsmath} % Advanced math typesetting
+\usepackage{amssymb}
+\usepackage[utf8]{inputenc} % Unicode support
+\usepackage{tikz}
+
+\usetikzlibrary{arrows,automata,graphs,positioning,calc}
+
+\title{ Programmierung WS 18 \\ Hausaufgaben - Blatt 1 }
+\author{ Julian Giesen (MNR 388487) \\
+Levin Gäher (MNR 395035) \\
+Gruppe 12 }
+\date{  }
+
+\addtolength{\textheight}{118pt} \addtolength{\voffset}{-59pt}
+\addtolength{\textwidth}{60pt} \addtolength{\hoffset}{-30pt}
+
+\begin{document}
+
+\maketitle
+
+\section* { HA 2 }
+
+\subsubsection*{ a) } 
+
+	\paragraph{ i) ~~ } Syntax: Korrekt  -- Semantik $W(P) = \emptyset $
+	\paragraph{ ii) ~ } Syntax: Korrekt  -- Semantik $W(P) = \{ p,~q \} $
+	\paragraph{ iii)~ } Syntax: Korrekt  -- Semantik $W(P) = \{ p,~s,~r \} $
+	\paragraph{ iiii) } Syntax: Inkorrekt
+
+\subsubsection*{ b) } 
+	Gegenbeispiel: Man nehme $G_2$ aus a): \\
+	\( p.~q~:-~p. = \{ p,~q \} = \{ p,~q,~p,~q \} = p.~q~:-~p.~p.~q~:-~p. \)
+
+\subsubsection*{ c) } 
+	Syntax $S_1,~S_2$ \\
+	Semantik $W(P)$ sei eine wohl-definierte Funktion (1) \\
+	$W(P_1) \neq W(P_2) \xLeftrightarrow{(1)} P_1 \neq P_2 \iff S_1 \neq S_2 $ \\
+
+\section*{ HA 4 }
+
+\subsubsection*{ a) }
+	
+	$G_2 = (\{S,A,B\},\{a,b\},P,S_2)$ \\
+	$P:$
+
+	$ S_2 \mapsto A $
+
+	$ S_2 \mapsto B $
+
+	$ A   \mapsto abbA $
+
+	$ A   \mapsto bA $
+
+	$ A   \mapsto \epsilon $
+
+	$ B   \mapsto baB $
+
+	$ B   \mapsto aB $
+
+	$ B   \mapsto \epsilon $
+
+\subsubsection*{ b) }
+	$G_{L_2} \mapsto (~\{~[a]~b~b~\{b\}~\} ~\mid~ \{~[b]~a~\{a\}~\}~) $ \\
+	% $(\{b\}\{abb\}\{b\} | \{a\} \{ba\} \{a\})$
+
+\subsubsection*{ c) }
+	\includegraphics*[width=\linewidth]{Uebung_01_Chart.png}
+
+\section*{ HA 6 }
+
+\subsubsection*{ a) }
+	$ (0010100000)_2 = 160 $ \\
+	$ (1111000101)_2 = -(0000111011)_2 = -59 $ \\
+	$ (0011001100)_2 = 204 $ \\
+	$ (1000010101)_2 = -(0111101011)_2 = -491 $ \\
+
+\subsubsection*{ b) }
+
+	Der Darstellungsbereich eines 32-Bit Integers beträgt: \\
+	 $-2^{31} = -2147483648 ~ $ bis $ ~ 2^{31}-1 = 2147483647$ \\
+
+\par{ i) }
+
+	Für die linke Seite gilt: $1000000000 + 1000000000 + 1000000000 = 3000000000 > 2147483647 $ \\ 
+	Unter Berücksichtigung des Überschusses: $-2^{31} + (3000000000-2^{31}) = -1294967296 $ \\
+	Für die rechte Seite gilt: $1000000000 + 1000000000 = 2000000000 < 2147483647 $ \\
+	Der Ausdruck wird also ausgewertet als: $ (-1294967296 > 2000000000) \mapsto false$ \\
+
+\par{ i) }
+
+	Für die linke Seite gilt: $-2147483648 + (-2147483648) = -4294967296 < -2147483648 $ \\
+	Unter Berücksichtigung des Überschusses: $2^{31} + (-4294967296+2^{31}) = 0 $ \\
+	Für die rechte Seite gilt: $-2147483648 - (-2147483648) = 0 $ \\ 
+	Der Ausdruck wird also ausgewertet als: $ (0 == 0) \mapsto false$
+
+\end{document}
