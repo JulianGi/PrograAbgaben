@@ -1,0 +1,56 @@
+
+\documentclass[a4paper]{article}
+
+\usepackage{mathtools}
+\usepackage{amsmath} % Advanced math typesetting
+\usepackage{amssymb}
+\usepackage[utf8]{inputenc} % Unicode support
+
+\title{ Programmierung WS 18 \\ Hausaufgaben - Blatt 2 }
+\author{ Julian Giesen (MNR 388487) \\
+Levin Gäher (MNR 395035) \\
+Gruppe 12 }
+\date{  }
+
+\addtolength{\textheight}{118pt} \addtolength{\voffset}{-59pt}
+\addtolength{\textwidth}{60pt} \addtolength{\hoffset}{-30pt}
+
+\begin{document}
+
+\maketitle
+
+\section* { HA 2 }
+
+\subsubsection*{ a) } 
+
+	\paragraph{ i) } 
+
+\section*{ HA 4 }
+
+CODE 
+
+
+\section*{ HA 6 }
+
+\( \displaystyle  %<>
+<~ x \geq 0 ~> \\
+<~ x \geq 0 \land -x \leq 0 \land -x = -x \land x = x ~> \\
+~~~~ res = -x; \\
+<~ x \geq 0 \land res \leq 0 \land res = -x \land x = x ~> \\ 
+~~~~ c = x; \\
+<~ x \geq 0 \land res \leq 0 \land res = -x \land c = x ~> \\
+<~ res = -x + \sum_{k=x}^{c+1} 2k \land c \geq 0 ~> \\
+~~~~ while (c > 0) \\
+~~~~ <~ res = -x + \sum_{k=x}^{c+1} 2k \land c \geq 0 \land c > 0 ~> \\
+~~~~ <~ res + 2*c = -x + \sum_{k=x}^{c-1+1} 2k \land c-1 \geq 0 ~> \\
+~~~~ ~~~~ res = res + 2 * c; \\
+~~~~ <~ res = -x + \sum_{k=x}^{c-1+1} 2k \land c-1 \geq 0 ~> \\
+~~~~ ~~~~ c = c-1; \\
+~~~~ <~ res = -x + \sum_{k=x}^{c+1} 2k \land c \geq 0 ~> \\
+~~~~ \} \\
+<~ res = -x + \sum_{k=x}^{c+1} 2k \land c \geq 0 \land \neg ( c > 0 ) ~> \\
+<~ res = -x + \sum_{k=x}^{1} 2k ~> \\
+\)
+
+
+\end{document}
