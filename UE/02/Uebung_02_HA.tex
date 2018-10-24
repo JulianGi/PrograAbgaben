@@ -20,14 +20,24 @@ Gruppe 12 }
 \maketitle
 
 \section* { HA 2 }
-
-\subsubsection*{ a) } 
-
-	\paragraph{ i) } 
+\subsection*{ a) } 
+float, 0.0
+\subsection*{b)}
+Nicht typkorrekt. x ist ein double und y ein boolean. Diese Typen sind unvergleichbar und der Ausdruck ist somit nicht typkorrekt.
+\subsection*{c)}
+boolean, false. Nur ein teil des Ausdrucks true ist, der \&\& Operator jedoch zwei true Eingaben für eine true Ausgabe benötigt.
+\subsection*{d)}
+boolean, false. Der char 'a' wird implizit in den Integer 97 umgewandelt, da eine Integerdivision mit 98 durchgeführt wird. Das Ergebnis dieser Integerdivion ist 0. Der Double 4.6 wird explizit in einen Integer umgewandelt und erhält den Wert 4. Dann wird eine Floatdivision mit dem Wert 3.F (3.0) durchgeführt, wodurch die 4 nun implizit zu einem Float konvertiert wird und den Wert 4.0 annimmt. Das Ergebnis der Division ist 0.75 was ungleich 0 ist. Somit ist das Ergebnis des Ausdrucks false. 
+\subsection*{e)}
+Nicht typkorrekt. Für den Vergleich $(x < z)$ wird z implizit in einen double mit dem Wert 3.0 konvertiert. Der Vergleich gibt den boolean Wert false aus. Dieser Typ kann nicht mit dem Float 2.2F verglichen werden. Der Ausdruck ist somit nicht typkorrekt.
+\subsection*{f)}
+Integer, 97. Der char 'a' wird explizit in Typ byte mit dem Wert 97 umgewandelt. Dieser Wert wird für einen Vergleich mit dem double x implizit in einen double mit dem Wert 97.0 konvertiert. Das Ergebnis des Vergleichs ist true. Der Bedingungsoperator gibt deswegen den char 'a' aus. result nimmt diesen Wert an, wobei der char 'a' jedoch implizit zu einem Integer mit dem Wert 97 konvertiert wird.
+\subsection*{g)}
+double, 1.0 Der Bedingungsoperator gibt den ersten Wert(einen Integer mit dem Wert 1) aus. Da der zweite Wert jedoch ein double ist, wird der erste Wert implizit zu einem double mit dem Wert 1.0 konvertiert. Da der Typ von u var ist, Übernimmt u den Typ und Wert des doubles 1.0. 
 
 \section*{ HA 4 }
 
-CODE 
+Siehe Anhang 
 
 
 \section*{ HA 6 }
