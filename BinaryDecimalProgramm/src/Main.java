@@ -15,7 +15,7 @@ public class Main {
             String binaryString = ""; 
             
 
-            while (!(-128 < decimalWert && decimalWert < 127))
+            while (!(-128 <= decimalWert && decimalWert <= 127))
             {
                 decimalWert = SimpleIO.getInt("Bitte geben Sie eine ganze Zahl zwischen -128 und 127 ein.");
             }
