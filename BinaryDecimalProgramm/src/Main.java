@@ -132,24 +132,61 @@ public class Main {
         }
 
         //Eins addieren
-        String plusString = "";
-        for(int i = flippedString.length() - 1; i > 0; i--)
-        {
-            if(flippedString.charAt(i) == '1')
-            {
-                plusString ="0" + plusString ;
-            }
-            else
-            {
-                plusString = "1" + plusString ;
-                for(int x = i - 1; x >= 0; x--)
-                {
-                    plusString = flippedString.charAt(x) + plusString;
-                }
-                break;
-            }
-        }
-        return plusString;
+        return(binärAddieren(flippedString, "00000001"));
+        
     
     }
+    public static String binärAddieren(String a, String b)
+    {   
+        
+        String result = "";
+        boolean carry = false;
+        for(int i = a.length() - 1; i>=0; i--)
+        {
+            int x = a.charAt(i);
+            int y = b.charAt(i);
+            if(x+y == 98)
+            {
+                if (carry)
+                {
+                    result = "1" + result;
+                }
+                else
+                {
+                    result = "0" + result;
+                    carry = true;
+                }
+                
+                
+            }
+            else if(x+y == 97)
+            {
+                if (carry)
+                {
+                    result = "0" +result;
+                }
+                else
+                {
+                    result = "1" +result;
+                }
+            }
+            else if(x+y == 96)
+            {
+                if (carry)
+                {
+                    result = "1" +result;
+                    carry = false;
+                }
+                else
+                {
+                    result = "0" +result;
+                }
+            }
+        }
+
+
+
+        return result;
+    }
+   
 }
