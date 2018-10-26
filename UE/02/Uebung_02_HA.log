@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018/Arch Linux) (preloaded format=pdflatex 2018.9.9)  24 OCT 2018 20:16
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018/Arch Linux) (preloaded format=pdflatex 2018.9.9)  26 OCT 2018 11:04
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -260,7 +260,7 @@ Here is how much of TeX's memory you used:
  6750 multiletter control sequences out of 15000+600000
  11195 words of font info for 44 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 55i,7n,30p,526b,200s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 55i,7n,30p,624b,200s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texmf-dist/fonts/type1/public/amsfonts/cm
 /cmbx12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></
 usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texm
@@ -270,7 +270,7 @@ onts/cm/cmr12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.p
 fb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/t
 exmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/font
 s/type1/public/amsfonts/cm/cmsy7.pfb>
-Output written on Uebung_02_HA.pdf (2 pages, 105298 bytes).
+Output written on Uebung_02_HA.pdf (2 pages, 105368 bytes).
 PDF statistics:
  51 PDF objects out of 1000 (max. 8388607)
  36 compressed objects within 1 object stream
