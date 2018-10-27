@@ -20,19 +20,19 @@ Gruppe 12 }
 \maketitle
 
 \section* { HA 2 }
-\subsection*{ a) } 
+\subsubsection*{ a) } 
 float, 0.0. 3 wird explizit und 2 implizit zu einem long konvertiert. Die Zahlen werden mit einander dividiert wobei das Ergebnis 0 ist. Das Ergebnis wird nun explizit zu einem float konvertiert.
-\subsection*{b)}
+\subsubsection*{b)}
 Nicht typkorrekt. x ist ein double und y ein boolean. Diese Typen sind unvergleichbar und der Ausdruck ist somit nicht typkorrekt.
-\subsection*{c)}
+\subsubsection*{c)}
 boolean, false. Nur ein teil des Ausdrucks true ist, der \&\& Operator jedoch zwei true Eingaben für eine true Ausgabe benötigt.
-\subsection*{d)}
+\subsubsection*{d)}
 boolean, false. Der char 'a' wird implizit in den Integer 97 umgewandelt, da eine Integerdivision mit 98 durchgeführt wird. Das Ergebnis dieser Integerdivion ist 0. Der Double 4.6 wird explizit in einen Integer umgewandelt und erhält den Wert 4. Dann wird eine Floatdivision mit dem Wert 3.F (3.0) durchgeführt, wodurch die 4 nun implizit zu einem Float konvertiert wird und den Wert 4.0 annimmt. Das Ergebnis der Division ist 0.75. Der integer 0 wird implizit in einen float umgewandelt und dann mit 0.75 verglichen. Die beiden Werte sind ungleich. Somit ist das Ergebnis des Ausdrucks false. 
-\subsection*{e)}
+\subsubsection*{e)}
 Nicht typkorrekt. Für den Vergleich $(x < z)$ wird z implizit in einen double mit dem Wert 3.0 konvertiert. Der Vergleich gibt den boolean Wert false aus. Dieser Typ kann nicht mit dem Float 2.2F verglichen werden. Der Ausdruck ist somit nicht typkorrekt.
-\subsection*{f)}
+\subsubsection*{f)}
 Integer, 97. Der char 'a' wird explizit in Typ byte mit dem Wert 97 umgewandelt. Dieser Wert wird für einen Vergleich mit dem double x implizit in einen double mit dem Wert 97.0 konvertiert. Das Ergebnis des Vergleichs ist true. Der Bedingungsoperator gibt deswegen den char 'a' aus. result nimmt diesen Wert an, wobei der char 'a' jedoch implizit zu einem Integer mit dem Wert 97 konvertiert wird.
-\subsection*{g)}
+\subsubsection*{g)}
 double, 1.0 Der Bedingungsoperator gibt den ersten Wert(einen Integer mit dem Wert 1) aus. Da der zweite Wert jedoch ein double ist, wird der erste Wert implizit zu einem double mit dem Wert 1.0 konvertiert. Da der Typ von u var ist, Übernimmt u den Typ und Wert des doubles 1.0. 
 
 \section*{ HA 4 }
@@ -42,16 +42,18 @@ Siehe Anhang
 
 \section*{ HA 6 }
 
-\( \displaystyle  %<>
+\( %<>
 <~ x \geq 0 ~> \\
 <~ x \geq 0 \land -x \leq 0 \land -x = -x \land x = x ~> \\
 ~~~~ res = -x; \\
 <~ x \geq 0 \land res \leq 0 \land res = -x \land x = x ~> \\ 
 ~~~~ c = x; \\
 <~ x \geq 0 \land res \leq 0 \land res = -x \land c = x ~> \\
+\\
 <~ res = -x + \sum_{k=x}^{c+1} 2k \land c \geq 0 ~> \\
 ~~~~ while (c > 0) \\
 ~~~~ <~ res = -x + \sum_{k=x}^{c+1} 2k \land c \geq 0 \land c > 0 ~> \\
+\\
 ~~~~ <~ res + 2*c = -x + \sum_{k=x}^{c-1+1} 2k \land c-1 \geq 0 ~> \\
 ~~~~ ~~~~ res = res + 2 * c; \\
 ~~~~ <~ res = -x + \sum_{k=x}^{c-1+1} 2k \land c-1 \geq 0 ~> \\
@@ -62,5 +64,49 @@ Siehe Anhang
 <~ res = -x + \sum_{k=x}^{1} 2k ~> \\
 \)
 
+\pagebreak
+
+\section*{ HA 8 }
+
+\( %<>
+<~ b \geq 0 ~> \\
+<~ b \geq 0 ~\land~ b \geq 0 ~\land~ b = b ~\land~ a = a ~\land~ 1 = 1 ~\land~ x \in \mathbb Z ~> \\
+~~~~ x = b; \\
+<~ b \geq 0 ~\land~ x \geq 0 ~\land~ x = b ~\land~ a = a ~\land~ 1 = 1 ~\land~ x \in \mathbb Z ~> \\
+~~~~ res = a; \\
+<~ b \geq 0 ~\land~ x \geq 0 ~\land~ x = b ~\land~ res = a ~\land~ 1 = 1 ~\land~ x \in \mathbb Z ~> \\
+~~~~ y = 1; \\
+<~ b \geq 0 ~\land~ x \geq 0 ~\land~ x = b ~\land~ res = a ~\land~ y = 1 ~\land~ x \in \mathbb Z ~> \\
+\\
+<~ res = a+b - x*y ~\land~ x \geq 0 ~\land~ x \in \mathbb Z ~> \\
+~~~~ while (x > 0) ~ \{ \\
+~~~~ <~ res = a+b - x*y ~\land~ x > 0 ~\land~ x \in \mathbb Z ~> \\
+\\
+~~~~ ~~~~ if (x\%2 == 0) ~ \{ \\
+~~~~ ~~~~ <~ res = a+b - x*y ~\land~ x > 0 ~\land~ x \in \mathbb Z ~\land~ x\%2 = 0 ~> \\
+\\
+~~~~ ~~~~ <~ res = a+b - \frac{x}{2}*2y ~\land~ \frac{x}{2} > 0 ~\land~ \frac{x}{2} \in \mathbb Z ~> \\
+~~~~ ~~~~ ~~~~ y = 2*y; \\
+~~~~ ~~~~ <~ res = a+b - \frac{x}{2}*y ~\land~ \frac{x}{2} > 0 ~\land~ \frac{x}{2} \in \mathbb Z ~> \\
+~~~~ ~~~~ ~~~~ x = x/2; \\
+~~~~ ~~~~ <~ res = a+b - x*y ~\land~ x > 0 ~\land~ x \in \mathbb Z ~> \\
+~~~~ ~~~~ \} \\
+~~~~ ~~~~ else ~ \{ \\
+~~~~ ~~~~ <~ res = a+b - x*y ~\land~ x > 0 ~\land~ x \in \mathbb Z ~\land~ x\%2 = 1 ~> \\
+\\
+~~~~ ~~~~ <~ res + y = a+b - \frac{x-1}{2}*2y ~\land~ \frac{x-1}{2} \geq 0 ~\land~ \frac{x-1}{2} \in \mathbb Z ~> \\
+~~~~ ~~~~ ~~~~ res = res + y; \\
+~~~~ ~~~~ <~ res = a+b - \frac{x-1}{2}*2y ~\land~ \frac{x-1}{2} \geq 0 ~\land~ \frac{x-1}{2} \in \mathbb Z ~> \\
+~~~~ ~~~~ ~~~~ y = 2*y; \\
+~~~~ ~~~~ <~ res = a+b - \frac{x-1}{2}*y ~\land~ \frac{x-1}{2} \geq 0 ~\land~ \frac{x-1}{2} \in \mathbb Z ~> \\
+~~~~ ~~~~ ~~~~ x = (x-1)/2; \\
+~~~~ ~~~~ <~ res = a+b - x*y ~\land~ x \geq 0 ~\land~ x \in \mathbb Z ~> \\
+~~~~ ~~~~ \} \\
+\\
+~~~~ <~ res = a+b - x*y ~\land~ x \geq 0 ~\land~ x \in \mathbb Z ~> \\
+~~~~ \} \\
+<~ res = a+b - x*y ~\land~ x \geq 0 ~\land~ x \in \mathbb Z ~\land~ \neg (x > 0) ~> \\
+<~ res = a + b ~> \\
+\)
 
 \end{document}
