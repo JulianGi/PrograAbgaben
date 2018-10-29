@@ -109,4 +109,81 @@ Siehe Anhang
 <~ res = a + b ~> \\
 \)
 
+
+\pagebreak
+
+\subsubsection*{ b) }
+
+Variante V = x \\
+Bedingung für die einzige Schleife: $ B = x > 0 $ \\
+$ B \Rightarrow V > 0 $, denn $ B \iff x > 0 \iff V > 0 $ \\
+\\
+\textbf{ Beweis, dass jede Iteration gilt: $ x \mapsto x_n \implies x_n < x $ } \\
+\(
+<~ x = x_n \land x > 0 \land x \in \mathbb Z ~> \\
+if (x\%2 == 0) ~ \{ \\
+Zweig~A: \\
+<~ x = x_n \land x > 0 \land x \in \mathbb Z \land x\%2 == 0 ~> \\
+<~ x = x_n \land \frac{x}{2} > 0 \land \frac{x}{2} \in \mathbb Z ~> \\
+~~~~ y = 2*y; \\
+<~ x = x_n \land \frac{x}{2} > 0 \land \frac{x}{2} \in \mathbb Z ~> \\
+~~~~ x = x/2; \\
+<~ x = x_n \land x > 0 \land x \in \mathbb Z ~> \\
+\} \\
+else ~ \{ \\
+Zweig~B: \\
+<~ x = x_n \land x > 0 \land x \in \mathbb Z \land x\%2 == 1 ~> \\
+<~ x = x_n \land \frac{x-1}{2} \geq 0 \land \frac{x-1}{2} \in \mathbb Z ~> \\
+~~~~ res = res + y; \\
+<~ x = x_n \land \frac{x-1}{2} \geq 0 \land \frac{x-1}{2} \in \mathbb Z ~> \\
+~~~~ y = 2*y; \\
+<~ x = x_n \land \frac{x-1}{2} \geq 0 \land \frac{x-1}{2} \in \mathbb Z ~> \\
+~~~~ x = (x-1)/2; \\
+<~ x = x_n \land x \geq 0 \land x \in \mathbb Z ~> \\
+\} \\
+\) 
+\\
+\textbf{ Zweig A = A(x): } \\
+\(
+~~~~~~~~ x = x_n \land x > 0 \land x \in \mathbb Z \\
+\iff x_n > 0 \\
+\)
+$\implies$ Zweig A kann die Schleife nicht terminieren \\ 
+\\
+\textbf{ Zweig B = B(x): } \\
+\(
+~~~~~~~~ x = x_n \land x \geq 0 \land x \in \mathbb Z \\
+\iff x_n \geq 0 \\
+\)
+$\implies$ Nur Zweig B kann die Schleife terminieren \\
+\\
+\textbf{ Beweis, das Zweig B unausweichlich ausgeführt wird und terminiert: } \\
+Seien $A(x)$ und $B(x)$ mathematische Funktionen, die das Verhalten von x über Zweig A bzw. Zweig B beschreiben: \\
+\( 
+A(x) = \frac{x}{2} ~~ \forall \frac{x}{2} \in \mathbb Z \\
+B(x) = \frac{x-1}{2} ~~ \forall \frac{x}{2} \notin \mathbb Z \\
+ \)
+Dann sei $W(x)$ eine zusammengesetzte Funktion aus $A(x)$ und $B(x)$, die das Verhalten von x über eine gesamte Schleifen-Iteration beschreibt: \\
+\(
+W(x) = \left\{ \begin{array}{cc} 
+                A(x) & \hspace{5mm} \frac{x}{2} \in \mathbb Z \\
+                B(x) & \hspace{5mm} \frac{x}{2} \notin \mathbb Z \\
+                \end{array} \right.
+\) \\
+Dann ist $W(x)^{it}$ eine rekursive Funktion zur Beschreibung von x über die gesamte Schleife bis zu einer maximalen Iteration $it$:\\
+$\mid \{ x \in \mathbb N_0 \mid 0 \leq x \leq b \} \mid \in \mathbb N \land x_n < x \implies it \in \mathbb N \land it \leq b $ \\
+$W(x)^{it}$ wiederrum lässt sich beschreiben als: \\
+$ \lim_{i \mapsto it} A(x)^i = 1 $ oder bis $ \frac{x}{2} \notin \mathbb Z \implies W(x) = B(x) $ \\
+und insbesondere $ x = 1 \implies W(x) = B(1) = 0 $\\
+$ \lim_{i \mapsto it} B(x)^i = 0 $ oder bis $ \frac{x-1}{2} \notin \mathbb Z \implies W(x) = A(x) $ \\
+Also muss mit  $x_n < x$ und $ it \in \mathbb N \land it \leq b $ folgern: $\lim_{i \mapsto it} W(x) = 0 $ \\
+
+\pagebreak
+
+\textbf{ TL;DR: }\\
+Insbesondere gilt, dass die Anzahl der Iterationen endlich sein muss. \\
+x kann nur eine begrenzte Anzahl an Werten annehmen: \\
+$\mid \{ x \in \mathbb N_0 \mid 0 \leq x \leq b \} \mid \in \mathbb N$ \\
+Da aber gilt: $x_n < x$ kann die Schleife nur maximal $it = b$ Iterationen durchlaufen. \\
+
 \end{document}
