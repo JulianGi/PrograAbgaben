@@ -22,11 +22,41 @@ Gruppe 12 }
 
 \section*{ HA 2 }
 
-TODO Code
-
 \section*{ HA 4 }
 
-TODO Hoare
+\subsection*{a)}
+$\langle$ $0 \leq a.length$ $\rangle$\\
+$\langle$ $0 \leq a.length \land 1=1 \land true = true \land 0 = 0$ $\rangle$\\
+$x = 1;$ \\
+$\langle$ $0 \leq a.length \land x=1 \land true = true \land 0 = 0$ $\rangle$\\
+$result = true;$ \\
+$\langle$ $0 \leq a.length \land x=1 \land result = true \land 0 = 0$ $\rangle$\\
+$i = 0;$ \\
+$\langle$ $0 \leq a.length \land x=1 \land result = true \land i = 0$ $\rangle$\\
+$\langle$ $i \leq a.length \land x=2^i \land result = \forall 0 \leq j < i: a[j] = 2^j$ $\rangle$\\
+$while (i \leq a.length) \{$ \\
+$\langle$ $i < a.length \land i \leq a.length \land x=2^i \land result = \forall 0 \leq j < i: a[j] = 2^j$ $\rangle$\\
+$\langle$ $i + 1 \leq a.length \land 2x=2^{i + 1} \land result = \forall 0 \leq j < i: a[j] = 2^j$ $\rangle$\\
+$if (a[i] != x) \{$\\
+$\langle$ $a[i] != x \land i + 1 \leq a.length \land 2x=2^{i + 1} \land result = \forall 0 \leq j < i: a[j] = 2^j$ $\rangle$\\
+$\langle$ $i + 1 \leq a.length \land 2x=2^{i + 1} \land false = \forall 0 \leq j < i + 1: a[j] = 2^j$ $\rangle$\\
+$result = false;$\\
+$\langle$ $i + 1 \leq a.length \land 2x=2^{i + 1} \land result = \forall 0 \leq j < i + 1 : a[j] = 2^j$ $\rangle$\\
+$\}$\\
+$\langle$ $i + 1 \leq a.length \land 2x=2^{i + 1} \land result = \forall 0 \leq j < i + 1: a[j] = 2^j$ $\rangle$\\
+$x = x * 2$\\
+$\langle$ $i + 1 \leq a.length \land x=2^{i + 1} \land result = \forall 0 \leq j < i + 1: a[j] = 2^j$ $\rangle$\\
+$i = i + 1;$ \\
+$\langle$ $i \leq a.length \land x=2^{i} \land result = \forall 0 \leq j < i: a[j] = 2^j$ $\rangle$\\
+$\}$\\
+$\langle$ $i \leq a.length \land x=2^{i} \land result = \forall 0 \leq j < i: a[j] = 2^j \land \neg (i < a.length)$ $\rangle$\\
+$\langle$ $result = \forall 0 \leq a.length : a[j] = 2^j $ $\rangle$\\
+
+\subsection*{b)}
+
+
+
+TODO b
 
 \section*{ HA 6 }
 
