@@ -54,9 +54,26 @@ $\langle$ $result = \forall 0 \leq a.length : a[j] = 2^j $ $\rangle$\\
 
 \subsection*{b)}
 
+Zur Verwendung der Bedingungsregel 1, muss Bewiesen werden, dass aus $result = \forall 0\leq j < i:a[j]2^j\land i + 1 \leq a.length$ und $\neg(a[i]!=x)$ die Nachbedingung $result = \forall 0 \leq j < i+1:a[j]=2^j\land i + 1 \leq a.length$ folgt.Da x sich nicht ändert, wenn die Gleichheit für ein weiteres Element überprüft wird - es wird nicht mehr bis i sondern i+1 verglichen - impliziert $result = \forall 0\leq j < i:a[j]2^j\land i + 1 \leq a.length$ und $\neg(a[i]!=x)$ die Aussage $result = \forall 0 \leq j < i+1:a[j]=2^j\land i + 1 \leq a.length$. Somit darf die Bedingungsregel 1 angewendet werden. \\\\
+$V=a.length-i$\\
+$B=>V\geq0$\\
+$B=i<a.length => a.length-i \geq 0$
+$\langle$ $a.length-i=m \land i<a.length$ $\rangle$\\
+$\langle$ $a.length-(i+1) < m$ $\rangle$\\
+$if(a[i]!=x)\{$\\
+$\langle$ $a.length-(i+1)<m\land a[i]!=x$ $\rangle$\\
+$\langle$ $a.length-(i+1)<m$ $\rangle$\\
+$result = false;$\\
+$\langle$ $a.length-(i+1)<m$ $\rangle$\\
+$\}$\\
+$\langle$ $a.length-(i+1)<m$ $\rangle$\\
+$x=x*2$\\
+$\langle$ $a.length-(i+1)<m$ $\rangle$\\
+$i=i+1$\\
+$\langle$ $a.length-i<m$ $\rangle$\\
 
 
-TODO b
+
 
 \section*{ HA 6 }
 
