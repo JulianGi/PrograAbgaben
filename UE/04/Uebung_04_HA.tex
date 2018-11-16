@@ -27,7 +27,25 @@ Gruppe 12 }
 
 \section*{ HA 4 }
 
-
+Programmausgabe:\\
+\\
+a2\\
+a3\\
+a1\\
+b1\\
+b2\\
+c2\\
+c2\\
+c1\\
+\\
+Ausgabe 1: Um Datenverlust zu vermeiden, wird Long.valueOf(100) als double interpretiert. Da es eine Methode gibt, die primitive double akzeptiert und nicht spezifisch ein Objekt Double als Parameter gegeben wurde, ruft b.a(Long.valueOf(100)) die Methode public void a(double p) auf, welche "a2" ausgibt.\\
+Ausgabe 2: Da ein Objekt Double als Parameter übergeben wurde, wird die Methode public void a(Double p) aufgerufen, welche "a3" ausgibt.\\
+Ausgabe 3: Das Objekt Integer wird als primitiver int interpretiert. Es wird die Methode public void a(int p) aufgerufen, welche "a1" ausgibt. \\
+Ausgabe 4: Da ein primitiver double als Parameter gegeben wurde, wird die Methode public double b(double p) aufgerufen, welche "b1" ausgibt. \\
+Ausgabe 5: Da ein primitiver int als Parameter gegeben wurde, wird die Methode public int b(int p) aufgerufen, welche "b2" ausgibt. \\
+Ausgabe 6: Das Integer Objekt und das String Objekt, die als Parameter gegeben werden, werden als primitiver long und als String Objekt aufgefasst, da es eine Methode gibt, die primitive long akzeptiert und nicht spezifisch ein Objekt Long als Parameter gegeben wurde. Darum wird die Methode public static void c(long p1, String p2) aufgerufen, welche "c2" aufgibt.\\
+Ausgabe 7: Die Parameter primitiver long und Objekt String passen zu der Methode public static void c(long p1, String p2). Deswegen wird diese aufgerufen und von ihr "c2" ausgegeben.\\
+Ausgabe 8:Der char ’0’ wird als int interpretiert, wodurch die Methode public static void c(Long p1, char p2) aufgerufen wird, welche "c1" ausgibt.\\
 
 
 \section*{ HA 6 }
