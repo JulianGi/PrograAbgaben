@@ -98,7 +98,7 @@ public class Certificate {
 		String content = getHeaderBodyString();
 
 		// (1) This is considered 'secret information'
-		byte[] validateSignature = getSignature(content, secret);
+		byte[] validSignature = getSignature(content, secret);
 
 		// (2) This is considered 'public information'
 		byte[] existingSignature = Hasher.hexStringToByteArray(signatur);
@@ -115,25 +115,36 @@ public class Certificate {
 		// so that the number of instructions required is solely dependant on the
 		// existing sign length
 		int sharedLength = existingSignature.length;
-		byte[] vSign = new byte[sharedLength];
+		byte[] validSignEq = new byte[sharedLength];
 		for (int i = 0; i < sharedLength; i++) {
 			// Modulo-Operator is time-constant in most common implementations
 			int safeIndex = i % sharedLength;
-			vSign[i] = validateSignature[safeIndex];
+			validSignEq[i] = validSignature[safeIndex];
 		}
 
 		// 2. Compare byte arrays on full length with same instructions, regardless of
 		// byte state
-		// The statement "byte1 == byte2 && eq" does always take the same time,
-		// In contrast to "eq && byte1 == byte2", which will not execute the actual
-		// comparison if eq is already false
-		Boolean eq = true;
+		// Neither "byte1 == byte2 && eq" or "eq && byte1 == byte2" 
+		// will execute the second comparison if the first is already false, so both are out of question
+		// An alternative is a counter, so that both the comparision AND the addition is always performed.
+		// 2 and 1 has been chosen to make sure the compiler does not optimize this out.
+		int cnt = 0; 
 		for (int i = 0; i < sharedLength; i++) {
-			eq = (existingSignature[i] == vSign[i]) && (eq);
+			cnt += (existingSignature[i] == validSignEq[i])? 2 : 1;
+		}
+		
+		// Return true only if ALL bytes are equal
+		return cnt == sharedLength * 2;
+		
+
+		// Now both steps combined for performance:
+		/*int cnt = 0; 
+		int sharedLength = existingSignature.length;
+		for (int i = 0; i < sharedLength; i++) {
+			cnt += (existingSignature[i] == validSignature[i % sharedLength])? 2 : 1;
 		}
 
-		// Return eq
-		return eq;
+		return cnt == sharedLength * 2;*/
 	}
 
 	/**
