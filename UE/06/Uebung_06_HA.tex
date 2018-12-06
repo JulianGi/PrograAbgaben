@@ -1,0 +1,81 @@
+
+\documentclass[a4paper]{article}
+
+\usepackage{mathtools}
+\usepackage{amsmath} % Advanced math typesetting
+\usepackage{amssymb}
+\usepackage[utf8]{inputenc} % Unicode support
+\usepackage{graphicx}
+
+\title{ Programmierung WS 18 \\ Hausaufgaben - Blatt 6 }
+\author{ Julian Giesen (MNR 388487) \\
+Levin Gäher (MNR 395035) \\
+Gruppe 12 }
+\date{  }
+
+\addtolength{\textheight}{118pt} \addtolength{\voffset}{-59pt}
+\addtolength{\textwidth}{60pt} \addtolength{\hoffset}{-30pt}
+
+\begin{document}
+
+\maketitle
+
+\section*{ HA 2 }
+\subsection*{a)}
+(1)
+A(int); explizit $->$ A(String); explizit$->$ Object(); implizit\\
+Ausgabe: v1.x: written in A(int)\\
+Begründung: x wird ausgegeben. Da der Konstruktor mit einem int aufgerufen wird, wird x in A(String) auf "written in A(int) gesetzt.
+\\
+(2)\\
+Reihenfolge: B(int); explizit $->$ B(String); explizit $->$ A(String) explizit $->$ Object(); implizit\\ 
+\\
+Aufruf:System.out.println("v2.x: "+v2.x);\\
+Ausgabe: v2.x: written in B(String)\\
+Begründung: Wegen super() wird die Oberklasse von B aufgerufen. Deswegen wird A(String) aufgerufen.\\
+\\
+Aufruf: System.out.println("((B) v2).x: " + ((B) v2).x);\\
+Ausgabe: ((B)v2).x: written in B(int)\\
+Begründung: Das casten von A auf B sorgt dafür, dass das x von B über x von A priorisiert wird.\\
+\\
+(3)\\
+Reihenfolge: B(A); explizit $->$ B(String); explizit $->$ A(String) $->$ Object(); implizit\\ \\
+Aufruf: System.out.println("((A)v3).x: "+((A)v3).x);\\
+Ausgabe: ((A)v3).x: written in B(String)\\
+Begründung: v3 wird zu A gecastet. Somit wird die variable x aus A ausgegeben.\\
+\\
+Aufruf: System.out.println("v3.x: "+v3.x);\\
+Ausgabe: v3.x: written in B(A)
+Begründung: v3 ist instanceof B. Somit wird die variable x die in B liegt ausgegeben. 
+\\
+(4)\\
+Reihenfolge: B() explizit $->$ B(String) explizit $->$ A(String) explizit $->$ Object(); \\
+\\
+Aufruf:System.out.println("((A)v4).x: "+((A)v4).x);
+Ausgabe: ((A)v4).x: written in B(String)
+Begründung: v4 wird zu A gecastet. Somit wird die variable x aus A ausgegeben.\\
+\\
+Aufruf: System.out.println("v4.x: "+v4.x);\\
+Ausgabe: v4.x: written in B()
+Begründung: Da v4 instanceof B ist, wird das x von B ausgegeben.
+
+\subsection*{b)}
+(1)Signatur: A.f(A)\\
+(2)Signatur: A.f(A)\\
+(3)Signatur: A.f(A)\\
+(4)Signatur: B.f(A)\\
+(5)Signatur: B.f(A)\\
+(6)Signatur: B.f(A)\\
+(7)Signatur: B.f(A)\\
+(8)Signatur: B.f(A)\\
+(9)Signatur: B.f(B)\\
+
+
+
+
+\section*{ HA 5 }
+
+Siehe Anhang
+
+
+\end{document}
