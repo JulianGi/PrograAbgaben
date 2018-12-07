@@ -6,6 +6,29 @@
 \usepackage{amssymb}
 \usepackage[utf8]{inputenc} % Unicode support
 \usepackage{graphicx}
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=Java,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
 
 \title{ Programmierung WS 18 \\ Hausaufgaben - Blatt 6 }
 \author{ Julian Giesen (MNR 388487) \\
@@ -75,7 +98,220 @@ Begründung: Da v4 instanceof B ist, wird das x von B ausgegeben.
 
 \section*{ HA 5 }
 
-Siehe Anhang
+\subsection*{Entry}
+
+\begin{lstlisting}
+public class Entry {
+	private final String name;
+	private final Node node;
+
+	public Entry(String Name, Node Node) {
+		name = Name;
+		node = Node;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public Node getNode() {
+		return node;
+	}
+
+	public File getAsFile() {
+		if (node instanceof File)
+			return (File) node;
+		return null;
+	}
+
+	public Directory getAsDirectory() {
+		if (node instanceof Directory)
+			return (Directory) node;
+		return null;
+	}
+
+	public Entry createHardlink(String newName) {
+		return new Entry(newName, node);
+	}
+}
+\end{lstlisting}
+
+\subsection*{Node}
+
+\begin{lstlisting}
+import java.lang.*;
+
+public abstract class Node {
+
+	private long lastModified;
+
+	public Node() {
+		touch();
+	}
+
+	public long getLastModified() {
+		return lastModified;
+	}
+
+	public void touch() {
+		lastModified = System.currentTimeMillis();
+	}
+}
+\end{lstlisting}
+
+\subsection*{Directory}
+
+\begin{lstlisting}
+public class Directory extends Node {
+
+	private Entry[] children;
+
+	// Constructor
+
+	public static Directory createEmpty() {
+		return new Directory();
+	}
+
+	public Directory() {
+		super();
+		children = new Entry[0];
+	}
+
+	// General
+
+	public Entry[] getEntries() {
+		//return new Entry[children.length];
+		return children;
+	}
+
+	public boolean containsEntry(String name) {
+		return getEntry(name) != null;
+	}
+
+	public Entry getEntry(String name) {
+		for (int i = 0; i < children.length; i++) {
+			if (children[i].getName() == name)
+				return children[i];
+		}
+		return null;
+	}
+
+	// Utility
+
+	public void accept(String name, Visitor visitor) {
+		visitor.visitDirectory(name, this);
+		for (int i = 0; i < children.length; i++) {
+			if (children[i].getNode() instanceof File)
+				visitor.visitFile(children[i].getName(), (File) children[i].getNode());
+			else if (children[i].getNode() instanceof Directory)
+				((Directory) children[i].getNode()).accept(children[i].getName(), visitor);
+		}
+		visitor.visitedDirectory();
+	}
+
+	// Creators
+
+	public Entry createDirectory(String name) {
+		if (containsEntry(name)) {
+			System.out.println("Error: Es existiert bereits einen Eintrag mit dem Namen'" + name + "'!");
+			return null;
+		}
+		Entry dir = new Entry(name, new Directory());
+		addEntry(dir);
+		return dir;
+	}
+
+	public Entry createFile(String name, String content) {
+		if (containsEntry(name)) {
+			System.out.println("Error: Es existiert bereits einen Eintrag mit dem Namen'" + name + "'!");
+			return null;
+		}
+		File f = new File();
+		f.writeContent(content);
+		Entry file = new Entry(name, f);
+		addEntry(file);
+		return file;
+	}
+
+	public Entry createHardlink(String name, Entry entry) {
+		if (containsEntry(name)) {
+			System.out.println("Error: Es existiert bereits einen Eintrag mit dem Namen'" + name + "'!");
+			return null;
+		}
+		Entry link = new Entry(name, entry.getNode());
+		addEntry(link);
+		return link;
+	}
+
+	// Helpers
+
+	private void addEntry(Entry entry) {
+		Entry[] newChildren = new Entry[children.length + 1];
+		for (int i = 0; i < children.length; i++)
+			newChildren[i] = children[i];
+		newChildren[children.length] = entry;
+		children = newChildren;
+	}
+}
+\end{lstlisting}
+
+\subsection*{File}
+
+\begin{lstlisting}
+public class File extends Node {
+
+	private String content;
+
+	public File() {
+		super();
+	}
+
+	public String readContent() {
+		return content;
+	}
+
+	public void writeContent(String Content) {
+		content = Content;
+		this.touch();
+	}
+
+}
+\end{lstlisting}
+
+\subsection*{Visitor}
+
+\begin{lstlisting}
+public interface Visitor 
+{
+	void visitFile(String name, File file);
+	void visitDirectory (String name, Directory directory);
+	void visitedDirectory();
+}
+\end{lstlisting}
+
+\subsection*{Printer}
+
+\begin{lstlisting}
+import java.lang.*;
+
+public class Printer implements Visitor {
+	public String curPath = "";
+
+	public void visitFile(String name, File file) {
+		System.out.println(file.getLastModified() + " " + curPath + name);
+		System.out.println("> " + file.readContent());
+	}
+
+	public void visitDirectory(String name, Directory directory) {
+		curPath = curPath + name + "/";
+		System.out.println(directory.getLastModified() + " " + curPath);
+	}
+
+	public void visitedDirectory() {
+		curPath = curPath.substring(0, curPath.lastIndexOf("/")) + "/";
+	}
+}
+\end{lstlisting}
 
 
 \end{document}
