@@ -27,13 +27,13 @@ public abstract class Swallow{
     protected abstract int getAirspeedVelocity();
 
 
-    static Swallow createEuropeanSwallow(Object cargo){
+    static EuropeanSwallow createEuropeanSwallow(Object cargo){
         EuropeanSwallow a = new EuropeanSwallow();
         a.setCargo(cargo);
         return a;
     }
 
-    static Swallow createAfricanSwallow(Object cargo){
+    static AfricanSwallow createAfricanSwallow(Object cargo){
         AfricanSwallow a = new AfricanSwallow();
         a.setCargo(cargo);
         return a;

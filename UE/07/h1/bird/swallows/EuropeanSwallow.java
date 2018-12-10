@@ -1,3 +1,4 @@
+package bird.swallows;
 import bird.*;
 
 public class EuropeanSwallow extends Swallow{
