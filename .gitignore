@@ -3,3 +3,4 @@
 /UE/*/*.log
 /UE/*/*.synctex.gz
 /UE/*/*.out
+/UE/*/*/.idea/*
