@@ -1,6 +1,6 @@
 package bird;
-import java.util.Arraylist;
-public class Flock<S>{
+import java.util.ArrayList;
+public class Flock<S extends Swallow> implements FlockInterface{
     private ArrayList<S> flock = new ArrayList<>();
 
     public void join(S swallow){
