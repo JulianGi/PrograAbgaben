@@ -1,7 +1,7 @@
 package people;
 
 import cargo.Nut;
-import bird.Swallow;
+import bird.*;
 
 /*  
  *  Falls Ihnen Teile der Aufgabe, Texte oder Variablenbenennungen komisch
@@ -9,13 +9,13 @@ import bird.Swallow;
  */
 
 public class KingArthur {
-  public static void main(String[] args) {
+  public static void main(String[] args) throws UnspecificQuestionException {
     System.out.println("King Arthur reitet in die Szene");
     Nut horse = new Nut();
     horse.setName("Kokosnuesse");
     horse.setWeight(7);
     System.out.println("Patsy imitiert ein Pferd und nutzt dazu " + horse.getName());
-    System.out.println("Die " + horse.getName() + " wiegen " + horse.getWeight());
+	System.out.println("Die " + horse.getName() + " wiegen " + horse.getWeight());
 
     System.out.println("Auf der Bruecke des Todes sitzt ein Troll.");
     Troll troll = new Troll();
@@ -24,11 +24,18 @@ public class KingArthur {
     // kann. Damit das Programm compiliert, wenn der Code nicht auskommentiert ist,
     // muessen Sie die eventuell auftretende Exception abfangen.
     //
-    // System.out.println("Was ist die Fluggeschwindigkeit dieser Kokusnuss?");
-    // System.out.println("Troll: " + troll.askAboutAirspeedVelocity(horse));
-    
-    System.out.println("Der Troll ist bestimmt harmlos, genau wie Kaninchen! Wir gehen einfach vorbei!");
-    troll.pass();
-    System.out.println("King Arthur hat den Troll sicher passiert!");
+	try 
+	{
+		System.out.println("Was ist die Fluggeschwindigkeit dieser Kokusnuss?");
+    	System.out.println("Troll: " + troll.askAboutAirspeedVelocity("Swallow")); // Oder "" / horse für verständliche Frage
+	}
+	catch (UnspecificQuestionException e) {}
+	finally
+	
+	{
+		System.out.println("Der Troll ist bestimmt harmlos, genau wie Kaninchen! Wir gehen einfach vorbei!");
+		troll.pass();
+		System.out.println("King Arthur hat den Troll sicher passiert!");
+	}
   }
 }

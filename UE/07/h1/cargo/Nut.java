@@ -3,6 +3,7 @@ public class Nut{
     private String name = "";
     private int weight = 0;
     
+	public Nut () {}
 
 
     public String getName(){

@@ -4,3 +4,5 @@
 /UE/*/*.synctex.gz
 /UE/*/*.out
 /UE/*/*/.idea/*
+
+UE/*/*/\.vscode/*
