@@ -28,7 +28,7 @@ sumUp (x:xs) = x + sumUp xs
 
 multLists :: [Int] -> [Int] -> [Int]
 multLists (x:[]) (y:[]) = [x*y]
-multLists (x:xs) (y:ys) = (x*y) : multLists xs ys
+multLists (x:xs) (y:ys) = [x*y] ++ multLists xs ys
 multLists _ _ = []
 
 
@@ -41,4 +41,3 @@ binRep n    | n == 0    = (0, [0])
 binRepHelper :: Int -> [Int]
 binRepHelper n  | n == 0 = []
                 | otherwise = binRepHelper (div n 2) ++ [modulo n 2]
-
