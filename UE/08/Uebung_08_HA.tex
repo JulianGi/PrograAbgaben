@@ -16,7 +16,7 @@
 \definecolor{mauve}{rgb}{0.58,0,0.82}
 
 \lstset{frame=tb,
-  language=Java,
+  language=Haskell,
   aboveskip=3mm,
   belowskip=3mm,
   showstringspaces=false,
@@ -46,6 +46,15 @@ Gruppe 12 }
 \maketitle
 \section*{HA 2 }
 
+f ( gT (tN 1) (f [ ]) )\\
+f ( gT (1 : tN 0) (f [ ]) ) \\
+f ( gT (1 : [ ]) (f [ ]) ) \\
+f ( gT (1 : [ ]) (0) ) \\
+f ( 1 : gT ([ ]) (0) ) \\
+f ( 1 : [ ] ) \\
+1 \\
+
+
 \section*{HA 4}
 \subsection*{a)}
 Die Gleichung stimmt nicht. Der $:$ Operator fügt die Liste links des Operators in die Liste rechts des Operators ein. Der $++$ Operator hängt die Liste links des Operators an die Liste rechts des Operators an.\\
@@ -59,9 +68,48 @@ Der Ausdruck $(x : y)$ ist syntaktisch inkorrekt, da $y$ keine Liste ist. Der Au
 Die Gleichung stimmt. Beide Listen enthalten 2 Elemente vom Typ $[Int]$.
 \subsection*{e)}
 Die Gleichung stimmt nicht. Der linke Ausdruck fügt durch den $:$ Operator die Liste $[x,y]$ vom Typ $[Int]$ in die Liste $[[z]]$ vom Typ $[[Int]]$ ein, jedoch ohne $x,y$ und $z$ in einer Liste zu vereinen. Die neue Liste enthält zwei Elemente vom Typen $[Int]$. Der rechte Ausdruck fügt mit dem Operator $:$ zunächst $y$ in die Liste $[z]$, dann $x$ in die Liste $[y,z]$ und dann die Liste $[x,y,z]$ in die leere Liste $[]$ ein. Die resultierende Liste enthält somit ein Element vom Typen $[Int]$.
-\section*{HA 6}
-Siehe Anhang
 
+\pagebreak
+
+\section*{HA 6}
+
+\begin{lstlisting}
+fib :: Int -> Int
+fib n   | n < 1    = 0
+        | n == 1    = 1
+        | otherwise = fib(n-2) + fib(n-1)    
+
+pow :: Int -> Int -> Int
+pow a b | b == 0    = 1
+        | otherwise = a * pow a (b-1)
+
+modulo :: Int -> Int -> Int
+modulo a b  | a == 0     = 0
+            | a < 0      = a + b
+            | otherwise  = modulo (a - b) b
+
+isDiv :: Int -> Int -> Bool
+isDiv a b   | modulo a b == 0   = True
+            | otherwise         = False
+
+sumUp :: [Int] -> Int
+sumUp []    = 0
+sumUp (x:xs) = x + sumUp xs
+
+multLists :: [Int] -> [Int] -> [Int]
+multLists (x:[]) (y:[]) = [x*y]
+multLists (x:xs) (y:ys) = [x*y] ++ multLists xs ys
+multLists _ _ = []
+
+binRep :: Int -> (Int, [Int])
+binRep n    | n == 0    = (0, [0])
+            | n > 1     = (1, binRepHelper n)
+            | n < 1     = (-1, binRepHelper ((-1)*n))
+
+binRepHelper :: Int -> [Int]
+binRepHelper n  | n == 0 = []
+                | otherwise = binRepHelper (div n 2) ++ [modulo n 2]
+\end{lstlisting}
 
 \end{document}
 
