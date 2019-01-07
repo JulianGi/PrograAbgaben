@@ -1,0 +1,104 @@
+
+
+\documentclass[a4paper]{article}
+
+\usepackage{mathtools}
+\usepackage{amsmath} % Advanced math typesetting
+\usepackage{amssymb}
+\usepackage[utf8]{inputenc} % Unicode support
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{color}
+
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=Haskell,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+
+\title{ Programmierung WS 18 \\ Hausaufgaben - Blatt 9 }
+\author{ Julian Giesen (MNR 388487) \\
+Levin Gäher (MNR 395035) \\
+Gruppe 12 }
+\date{  }
+
+\addtolength{\textheight}{118pt} \addtolength{\voffset}{-59pt}
+\addtolength{\textwidth}{60pt} \addtolength{\hoffset}{-30pt}
+
+\begin{document}
+
+\maketitle
+
+\section*{HA 2 }
+
+\begin{lstlisting}
+-- Types
+data VariableName = X | Y deriving Show
+data Expression = Constant Int | Variable VariableName | Add Expression Expression |  Multiply Expression Expression deriving Show
+
+-- Resolves Variables
+getValue :: VariableName -> Int
+getValue X = 5
+getValue Y = 13
+
+-- Resolves Expressions
+evaluate :: Expression -> Int
+evaluate (Constant c) = c
+evaluate (Variable v) = getValue v
+evaluate (Add ex1 ex2) = (evaluate ex1) + (evaluate ex2)
+evaluate (Multiply ex1 ex2) = (evaluate ex1) * (evaluate ex2)
+
+-- Optimizes Expressions One Level
+tryOptimize :: Expression -> Expression
+tryOptimize (Add (Constant c1) (Constant c2)) = Constant (c1 + c2)
+tryOptimize (Multiply (Constant c1) (Constant c2)) = Constant (c1 * c2)
+tryOptimize ex = ex
+
+-- Optimizes Expressions Recursively
+evaluatePartially :: Expression -> Expression
+evaluatePartially (Add ex1 ex2) = tryOptimize (Add (evaluatePartially ex1) (evaluatePartially ex2))
+evaluatePartially (Multiply ex1 ex2) = tryOptimize (Multiply (evaluatePartially ex1) (evaluatePartially ex2))
+evaluatePartially ex = ex
+
+-- Example Provided
+exampleExpression = Add
+						( Add
+							( Constant 20)
+							( Constant 17))
+						( Add
+							( Variable X )
+							( Multiply
+								( Add
+									( Constant 14)
+									( Constant 7))
+								( Constant 2)))
+\end{lstlisting}
+
+\pagebreak
+
+\section*{HA 4 }
+
+\end{document}
+
+% CODE:
+% \begin{lstlisting}
+% \end{lstlisting}
+% 
+% IMAGE:
+% \includegraphics*[width=400px]{Nr6_UML_Graph.PNG}
