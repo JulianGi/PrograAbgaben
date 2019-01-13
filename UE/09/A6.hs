@@ -21,7 +21,7 @@ data Product = Article String Int deriving Show
 
 isHumanEatable :: Product -> Bool
 isHumanEatable (Article "Dog Food" _) = False
-isHumanEatable (Article _ _) = True 
+isHumanEatable _ = True 
 
 adjustPrice :: Product -> Product
 adjustPrice (Article n p) = if p < 1000 then Article n (p*2) else Article n p
