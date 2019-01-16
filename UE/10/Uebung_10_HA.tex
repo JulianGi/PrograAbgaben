@@ -1,0 +1,93 @@
+
+
+\documentclass[a4paper]{article}
+
+\usepackage{mathtools}
+\usepackage{amsmath} % Advanced math typesetting
+\usepackage{amssymb}
+\usepackage[utf8]{inputenc} % Unicode support
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{color}
+
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=Haskell,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+
+\title{ Programmierung WS 18 \\ Hausaufgaben - Blatt 10 }
+\author{ Julian Giesen (MNR 388487) \\
+Levin Gäher (MNR 395035) \\
+Gruppe 12 }
+\date{  }
+
+\addtolength{\textheight}{118pt} \addtolength{\voffset}{-59pt}
+\addtolength{\textwidth}{60pt} \addtolength{\hoffset}{-30pt}
+
+\begin{document}
+
+\maketitle
+
+\section*{ HA 2 }
+\subsection*{a)}
+\begin{lstlisting}
+	istUnterkunft(wh).
+	istUnterkunft(bh).
+	istUnterkunft(sh).
+	istUnterkunft(ph).
+	istUnterkunft(jh).
+	istUnterkunft(fb).
+	
+	hatEinenStern(ph).
+	hatZweiSterne(sh).
+	hatDreiSterne(jh).
+	hatVierSterne(wh).
+	hatFuenfSterne(fb).
+	hatFuenfSterne(bh).
+\end{lstlisting}
+
+\subsection*{b)}
+\begin{lstlisting}
+	?- hatFuenfSterne(X).
+\end{lstlisting}
+
+\subsection*{c)}
+\begin{lstlisting}
+	hatEinenSternWeniger(X,Y) :- hatVierSterne(X), hatFuenfSterne(Y).
+	hatEinenSternWeniger(X,Y) :- hatDreiSterne(X), hatVierSterne(Y).
+	hatEinenSternWeniger(X,Y) :- hatZweiSterne(X), hatDreiSterne(Y).
+	hatEinenSternWeniger(X,Y) :- hatEinenStern(X), hatZweiSterne(Y).
+	
+\end{lstlisting}
+\subsection*{d)}
+\begin{lstlisting}
+	?- hatEinenSternWeniger(_,X).
+\end{lstlisting}
+\subsection*{e)}
+\begin{lstlisting}
+	hatWenigerSterne(X,Y) :-  hatEinenSternWeniger(X,Y).
+	hatWenigerSterne(X,Y) :- hatEinenSternWeniger(X,Z), hatWenigerSterne(Z,Y).
+\end{lstlisting}
+\section*{ HA 4 }
+
+
+
+\end{document}
+
