@@ -4,8 +4,21 @@ generate :: Rosebush
 generate = Stalk
 	(Fork
 		(Stalk
+			(Fork
+				(Stalk
+					generate
+				)
+				(Stalk
+					Rose
+				)
+			)
+		)
+		(Stalk
 			(Stalk
 				(Fork
+					(Stalk
+						Rose
+					)
 					(Stalk
 						(Stalk
 							(Stalk
@@ -13,22 +26,10 @@ generate = Stalk
 							)
 						)
 					)
-					(Stalk
-						Rose
-					)
 				)
 			)
 		)
-		(Stalk
-			(Fork
-				(Stalk
-					Rose
-				)
-				(Stalk
-					generate
-				)
-			)
-		)
+		
 	)
 cut :: Int -> Rosebush -> Rosebush
 cut 0 _ = Cut
