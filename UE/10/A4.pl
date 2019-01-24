@@ -15,5 +15,7 @@ flatten([[X|XS]|Res], [X|YS]) :- flatten([XS|Res], YS).
 appendElement(X,Y,Z) :- flatten([X,[Y]],Z).
 
 %e)
-
+reverseList([], []).
+reverseList([X], [X]).
+reverseList([X|XS], Y) :- reverseList(XS, Z), appendElement(Z, X, Y).
 
