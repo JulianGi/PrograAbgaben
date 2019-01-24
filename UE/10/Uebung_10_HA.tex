@@ -86,6 +86,42 @@ Gruppe 12 }
 	hatWenigerSterne(X,Y) :- hatEinenSternWeniger(X,Z), hatWenigerSterne(Z,Y).
 \end{lstlisting}
 \section*{ HA 4 }
+\subsection*{a)}
+\begin{lstlisting}
+isList(nil).
+isList(cons(_, Rest)) :- isList(Rest).
+\end{lstlisting}
+
+
+\subsection*{b)}
+\begin{lstlisting}
+toPrologList(nil, []).
+toPrologList(cons(N, Rest),[Head|Tail]) :- Head = N, toPrologList(Rest,Tail). 
+\end{lstlisting}
+
+
+\subsection*{c)}
+\begin{lstlisting}
+flatten([],[]).
+flatten([[]|Res], YS) :- flatten(Res, YS).
+flatten([[X|XS]|Res], [X|YS]) :- flatten([XS|Res], YS).
+\end{lstlisting}
+
+
+\subsection*{d)}
+\begin{lstlisting}
+appendElement(X,Y,Z) :- flatten([X,[Y]],Z).
+\end{lstlisting}
+
+
+\subsection*{e)}
+\begin{lstlisting}
+reverseList([], []).
+reverseList([X], [X]).
+reverseList([X|XS], Y) :- reverseList(XS, Z), appendElement(Z, X, Y).
+
+\end{lstlisting}
+
 
 
 
