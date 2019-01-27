@@ -1,0 +1,82 @@
+
+
+\documentclass[a4paper]{article}
+
+\usepackage{mathtools}
+\usepackage{amsmath} % Advanced math typesetting
+\usepackage{amssymb}
+\usepackage[utf8]{inputenc} % Unicode support
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{color}
+
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=Haskell,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+
+\title{ Programmierung WS 18 \\ Hausaufgaben - Blatt 11 }
+\author{ Julian Giesen (MNR 388487) \\
+Levin Gäher (MNR 395035) \\
+Gruppe 12 }
+\date{  }
+
+\addtolength{\textheight}{118pt} \addtolength{\voffset}{-59pt}
+\addtolength{\textwidth}{60pt} \addtolength{\hoffset}{-30pt}
+
+\begin{document}
+
+\maketitle
+
+\section*{ HA 2 }
+\subsection*{(i)}
+$\sigma_1 = \{Z = a\}$\\
+$\sigma_2 = \{Y = g(X,a)\}$\\
+$\sigma_3 = \{X = g(a,Y)\}$\\
+$\sigma = \sigma_3 \circ \sigma_2 \circ \sigma_1 = \{Z = a, Y = g(X,a), X = g(a,Y)\}$
+\subsection*{(ii)}
+$\sigma_1 = \{X = a\}$\\
+$=>$ Clash Failure, $MGU(b,a)$ existiert nicht.
+\subsection*{(iii)}
+$\sigma_1 = \{Z = h(Y)\}$\\
+$\sigma_2 = \{X = a\}$\\
+$\sigma_3 = \{Y = h(a)\}$\\
+$=>$ Occure Failure
+\subsection*{(iv)}
+$\sigma_1 = \{W = h(X)\}$\\
+$\sigma_2 = \{Y = a\}$\\
+$\sigma_3 = \{Z = g(a,a)\}$\\
+$\sigma_4 = \{X = b\}$\\
+$\sigma = \sigma_4 \circ \sigma_3 \circ \sigma_2 \circ \sigma_1= \{W = h(X), Y=a, Z = g(a,a), X =b\}$
+\subsection*{(v)}
+$\sigma_1 = \{X = Y\}$\\
+$\sigma_2 = \{Y = a\}$\\
+$\sigma = \sigma_2 \circ \sigma_1 = \{X = Y, Y = a\}$
+
+
+\section*{ HA 4 }
+
+\section*{ HA 6}
+
+
+
+
+\end{document}
+
