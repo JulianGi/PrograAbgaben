@@ -49,8 +49,8 @@ Gruppe 12 }
 \subsection*{(i)}
 $\sigma_1 = \{Z = a\}$\\
 $\sigma_2 = \{Y = g(X,a)\}$\\
-$\sigma_3 = \{X = g(a,Y)\}$\\
-$\sigma = \sigma_3 \circ \sigma_2 \circ \sigma_1 = \{Z = a, Y = g(X,a), X = g(a,Y)\}$
+$=>$ Occur Failure, $MGU (X, g(a,g(X,a)))$ existiert nicht.
+
 \subsection*{(ii)}
 $\sigma_1 = \{X = a\}$\\
 $=>$ Clash Failure, $MGU(b,a)$ existiert nicht.
@@ -58,17 +58,17 @@ $=>$ Clash Failure, $MGU(b,a)$ existiert nicht.
 $\sigma_1 = \{Z = h(Y)\}$\\
 $\sigma_2 = \{X = a\}$\\
 $\sigma_3 = \{Y = h(a)\}$\\
-$=>$ Occure Failure
+$=>$ Clash Failure, $MGU(h(a),a)$ existiert nicht.
 \subsection*{(iv)}
 $\sigma_1 = \{W = h(X)\}$\\
 $\sigma_2 = \{Y = a\}$\\
 $\sigma_3 = \{Z = g(a,a)\}$\\
 $\sigma_4 = \{X = b\}$\\
-$\sigma = \sigma_4 \circ \sigma_3 \circ \sigma_2 \circ \sigma_1= \{W = h(X), Y=a, Z = g(a,a), X =b\}$
+$\sigma = \sigma_4 \circ \sigma_3 \circ \sigma_2 \circ \sigma_1= \{W = h(b), Y=a, Z = g(a,a), X =b\}$
 \subsection*{(v)}
 $\sigma_1 = \{X = Y\}$\\
 $\sigma_2 = \{Y = a\}$\\
-$\sigma = \sigma_2 \circ \sigma_1 = \{X = Y, Y = a\}$
+$\sigma = \sigma_2 \circ \sigma_1 = \{X = a, Y = a\}$
 
 
 \section*{ HA 4 }
